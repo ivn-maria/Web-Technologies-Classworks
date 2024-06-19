@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Форма за регистрация</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+    <div class="container">
+        <form class="form">
+            <label for="username"></label>
+            <input type="text" id="username" name="username" placeholder="Потребителско име" />
+
+            <label for="password"></label>
+            <input type="password" id="password" name="password" placeholder="Парола" />
+
+            <label for="phone_number"></label>
+            <input type="tel" input id="phone_number" name="phone_number" pattern="+359[0-9]{9}" placeholder="Телефон" />
+
+            <label for="email"></label>
+            <input type="email" id="email" name="email" placeholder="Имейл адрес" />
+
+            <label for="role"></label>
+            <select id="role" name="role" required>
+                <option value="Собственик">Собственик</option>
+                <option value="Наемател">Наемател</option>
+            </select>
+
+            <label for="apartment_number"></label>
+            <input type="text" id="apartment_number" name="apartment_number" placeholder="Номер на апартеманета" />
+
+            <button type="submit">Регистрай ме!</button>
+        </form>
+    </div>
+</body>
+
+</html>

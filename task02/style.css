@@ -1,0 +1,64 @@
+html, body{
+    background-color: rgb(231, 253, 242);
+}
+
+.container {
+    width: 50%;
+    background-color: rgb(231, 253, 242);
+    margin: auto;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(88, 125, 47);
+}
+
+.form {
+    width: 80%;
+    box-sizing: border-box;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.form input, .form select {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(256, 256, 256);
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border: 2px;
+    border-style: solid;
+    border-color: rgb(197, 204, 191);
+}
+
+.form select {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(256, 256, 256);
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border: 2px;
+    border-style: solid;
+    border-color: rgb(174, 181, 168);
+}
+
+.form button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    background-color: rgb(213, 230, 217);
+    border: 2px;
+    border-style: solid;
+    border-color: rgb(197, 204, 191);
+    color: rgb(88, 125, 47);
+}
+
+.form input:hover, .form select:hover {
+    border-color: rgb(88, 125, 47);
+}
+
+.form button:hover {
+    border-color: rgb(231, 230, 217);
+    background-color: rgb(88, 125, 47);
+    color: rgb(231, 230, 217);
+}

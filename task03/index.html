@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation</title>
+    <style>
+        .error {color: red}
+    </style>
+</head>
+
+<body>
+    <h2>Registration Form</h2>
+    <form id="registrationForm" action="register.php" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <span id="usernameError" class="error"></span><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <span id="passwordError" class="error"></span><br>
+
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword" name="confirmPassword"><br>
+        <span id="confirmPasswordError" class="error"></span><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById("username").value.trim();
+            let password = document.getElementById("password").value;
+
+            if (validate(username, password)) {
+                ajax("./register.php", {
+                    method: "POST",
+                    data: JSON.stringify({username, password}),
+                    success: registerSuccess
+                });
+            }
+        });
+
+        function registerSuccess(data) {
+            console.log(data);
+        }
+
+        function validate(username, password) {
+            let isValid = true;
+
+            let usernameError = document.getElementById("usernameError");
+            if (username.length < 3 || username.length > 10 || !/^[a-zA-Z0-9_]+$/.test(username)) {
+                usernameError.textContent = "Username must be between 3 and 10 characters and contain only letters, numbers, and underscores.";
+                isValid = false;
+            } else {
+                usernameError.textContent = "";
+            }
+
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            let passwordError = document.getElementById("passwordError");
+            let confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            if (password.length < 6) {
+                passwordError.textContent = "Password must be at least 6 characters long.";
+                isValid = false;
+            } else if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+                passwordError.textContent = "Password must contain at least one uppercase letter, one lowercase letter, and one digit.";
+                isValid = false;
+            } else {
+                passwordError.textContent = "";
+            }
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "Passwords do not match.";
+                isValid = false;
+            } else {
+                confirmPasswordError.textContent = "";
+            }
+
+            return isValid;
+        }
+
+        function ajax(url, settings){
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                if (xhr.status === 200) {
+                    settings.success(xhr.responseText);
+                } else {
+                    console.error(xhr.responseText);
+                } };
+            xhr.open(settings.method || 'GET', url, /* async */ true);
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.send(settings.data || null);
+        }
+
+    </script>
+</body>
+
+</html>
